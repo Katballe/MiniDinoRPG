@@ -1,6 +1,5 @@
 package game;
 
-import game.dispaly.Display;
 
 public class Launcher {
     public static void main(String[] args) throws Exception {

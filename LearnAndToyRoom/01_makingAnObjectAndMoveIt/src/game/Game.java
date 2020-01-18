@@ -23,7 +23,7 @@ public class Game implements Runnable {
     }
     
     private void init(){
-        Display display = new Display(title, width, height);
+        display = new Display(title, width, height);
     }
     
     private void update(){
@@ -31,16 +31,18 @@ public class Game implements Runnable {
     }
     
     private void render(){
+
         bs = display.getCanvas().getBufferStrategy();
         if (bs == null){
             display.getCanvas().createBufferStrategy(3);    // MAX 3!
-            // return;
+         //   bs = display.getCanvas().getBufferStrategy();
+            return;
         }
         
         g = bs.getDrawGraphics();   // creates "the paint brush" for graphics 
 
         // draw here
-        g.fillRect(0, 0, 50, 50);    
+        g.fillRect(0, 0, width, height);    
         // end drawing
         bs.show();      // shows it 
         g.dispose();    // gets done 
@@ -49,8 +51,9 @@ public class Game implements Runnable {
     
 
     public void run(){
+        
         init();
-
+        
         //game loop
         while(running){
             update();
@@ -67,7 +70,7 @@ public class Game implements Runnable {
         if (running)
             {return;}
         running = true;
-        Thread thread = new Thread(this);
+        thread = new Thread(this);
         thread.start(); // kalder run metoden
     }
     

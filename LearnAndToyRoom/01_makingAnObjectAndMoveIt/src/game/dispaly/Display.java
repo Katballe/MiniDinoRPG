@@ -29,7 +29,7 @@ public class Display {
         frame.setLocationRelativeTo(null);      // pup up in center
         frame.setVisible(true);                 // default is false
     
-        Canvas canvas = new Canvas();
+        canvas = new Canvas();
         canvas.setPreferredSize(new Dimension(width, height));
         canvas.setMaximumSize(new Dimension(width, height));
         canvas.setMinimumSize(new Dimension(width, height));
