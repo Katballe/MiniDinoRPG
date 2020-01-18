@@ -40,10 +40,17 @@ public class Game implements Runnable {
         }
         
         g = bs.getDrawGraphics();   // creates "the paint brush" for graphics 
+        
+        // clean the screen
+        g.clearRect(0, 0, width, height);
 
         // draw here
-        g.fillRect(0, 0, width, height);    
+        
+        
+        
         // end drawing
+        
+        // show
         bs.show();      // shows it 
         g.dispose();    // gets done 
 
@@ -68,7 +75,7 @@ public class Game implements Runnable {
     //   læs op på synchronized
     public synchronized void start(){
         if (running)
-            {return;}
+            return;
         running = true;
         thread = new Thread(this);
         thread.start(); // kalder run metoden
@@ -76,7 +83,7 @@ public class Game implements Runnable {
     
     public synchronized void stop(){
         if (!running)
-            {return;}
+            return;
         running = false;
         try {
             thread.join();
