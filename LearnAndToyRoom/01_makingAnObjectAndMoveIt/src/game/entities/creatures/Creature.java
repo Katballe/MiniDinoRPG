@@ -6,30 +6,32 @@ public abstract class Creature extends Entity {
 
     public static final int defaultHealth = 10;
     public static final float defaultSpeed = 3.0f;
-    public static final int defaultCreatureWidth = 80, 
-                              defaultCreatureHeight = 80;
+    public static final int defaultCreatureWidth  = 80, 
+                            defaultCreatureHeight = 80;
 
     protected int health;
     protected float speed;
-    protected float xMove, yMove; 
+    protected float xMove, yMove;
 
     public Creature(float x, float y, int width, int height) {
         super(x, y, width, height);
         health = defaultHealth;
         speed = defaultSpeed;
-        xMove = 0; yMove = 0;
+        xMove = 0;
+        yMove = 0;
     }
 
-    public void move(){
+    public void move() {
         x += xMove;
         y += yMove;
     }
 
     // getters and setters
-    public int getHealth(){
+    public int getHealth() {
         return health;
     }
-    public float getSpeed(){
+
+    public float getSpeed() {
         return speed;
     }
 

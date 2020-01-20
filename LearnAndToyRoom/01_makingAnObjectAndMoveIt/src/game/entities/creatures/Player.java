@@ -56,7 +56,12 @@ public class Player extends Creature {
 
     @Override
     public void render(Graphics g) {
-        g.drawImage(Assets.playerRun1, (int) x, (int) y, width, height, null);
+        if (xMove == 0 && yMove == 0){
+            g.drawImage(Assets.playerIdle1, (int) x, (int) y, width, height, null);
+        } else {
+            g.drawImage(Assets.playerRun1, (int) x, (int) y, width, height, null);
+        }
+        
     }
 
     
