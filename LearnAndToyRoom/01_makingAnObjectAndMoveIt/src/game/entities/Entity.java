@@ -1,22 +1,26 @@
 package game.entities;
 
 import java.awt.Graphics;
+import java.awt.Rectangle;
 
-import game.Game;
+import game.Handler;
 
 public abstract class Entity {
 
-    protected Game game;
+    protected Handler handler;
     protected float x,y;    //float for smooth movement
     protected int width, height;    // of the creature
+    protected Rectangle bounds;
     
     
-    public Entity(Game game, float x, float y, int witdh, int height){
-        this.game = game;
+    public Entity(Handler handler, float x, float y, int witdh, int height){
+        this.handler = handler;
         this.x = x;
         this.y = y;
         this.width = witdh;
         this.height = height;
+
+        bounds = new Rectangle(0, 0, width, height);
     }
 
     public float getX(){

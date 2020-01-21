@@ -2,7 +2,7 @@ package game.states;
 
 import java.awt.Graphics;
 
-import game.Game;
+import game.Handler;
 import game.entities.creatures.Player;
 import game.world.World;
 
@@ -11,10 +11,12 @@ public class GameState extends State {
     private World world;    // test
     private Player player;
 
-    public GameState(Game game){
-        super(game);
-        player = new Player(game, 100, 100);
-        world = new World(game, "LearnAndToyRoom\\01_makingAnObjectAndMoveIt\\src\\game\\rcs\\worlds\\world1.txt");
+    public GameState(Handler handler){
+        super(handler);
+        world = new World(handler, "LearnAndToyRoom\\01_makingAnObjectAndMoveIt\\src\\game\\rcs\\worlds\\world1.txt");
+        handler.setWorld(world);
+        player = new Player(handler, 100, 100);
+        
 
     //    game.getGameCamera().move(0, 0);
     }

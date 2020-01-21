@@ -3,8 +3,6 @@ package game;
 import game.dispaly.Assets;
 import game.dispaly.Display;
 import game.dispaly.GameCamera;
-import game.dispaly.imageLoader;
-import game.dispaly.spriteSheet;
 import game.input.KeyManager;
 import game.states.GameState;
 import game.states.MainMenuState;
@@ -12,7 +10,6 @@ import game.states.State;
 
 import java.awt.image.BufferStrategy;
 import java.awt.Graphics;
-import java.awt.image.BufferedImage;
 
 
 
@@ -39,11 +36,13 @@ public class Game implements Runnable {
     // camera
     private GameCamera gameCamera;
 
+    //handler
+    private Handler handler;
+
     //temp code
     //private int counter;
     //private BufferedImage testImage;
     //private spriteSheet sheet;
-
     //temp code end 
     
 
@@ -62,11 +61,12 @@ public class Game implements Runnable {
         Assets.init();
 
         gameCamera = new GameCamera(this, 0, 0);
+        handler = new Handler(this);
         //testImage = imageLoader.loadImage("/game/rcs/textures/spritesheet.png");
         //sheet = new spriteSheet(testImage);
 
-        gameState = new GameState(this);
-        menuState = new MainMenuState(this);
+        gameState = new GameState(handler);
+        menuState = new MainMenuState(handler);
         State.setState(gameState);
     }
 

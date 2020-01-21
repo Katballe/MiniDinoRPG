@@ -2,12 +2,12 @@ package game.states;
 
 import java.awt.Graphics;
 
-import game.Game;
+import game.Handler;
 
 public class SettingsState extends State {
 
-    public SettingsState(Game game){
-        super(game);
+    public SettingsState(Handler handler){
+        super(handler);
 
     }
 

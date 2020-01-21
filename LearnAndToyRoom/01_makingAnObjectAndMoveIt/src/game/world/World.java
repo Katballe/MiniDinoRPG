@@ -2,19 +2,19 @@ package game.world;
 
 import java.awt.Graphics;
 
-import game.Game;
+import game.Handler;
 import game.tile.Tile;
 import game.utils.Utils;
 
 public class World {
 
-    private Game game;
+    private Handler handler;
     private int width, height;
     private int spawnX, spawnY;
     private int [][] tiles;
 
-    public World(Game game, String path){
-        this.game = game;
+    public World(Handler handler, String path){
+        this.handler = handler;
         loadWorld(path);
     }
 
@@ -23,14 +23,23 @@ public class World {
     }
 
     public void render(Graphics g){
-        for (int y = 0; y < height; y++){
-            for (int x = 0; x < width; x++){
-                getTile(x, y).render(g, (int) (x * Tile.tileWidth - game.getGameCamera().getXOffset()), (int ) (y * Tile.tileHeight - game.getGameCamera().getYOffset()));
+        int xStart= (int) Math.max(0, handler.getGameCamera().getXOffset() / Tile.tileWidth), 
+            xEnd =  (int) Math.min(width, (handler.getGameCamera().getXOffset() + handler.getWidth())/ Tile.tileWidth + 1), 
+            yStart= (int) Math.max(0, handler.getGameCamera().getYOffset() / Tile.tileHeight), 
+            yEnd =  (int) Math.min(height, (handler.getGameCamera().getYOffset() + handler.getWidth())/ Tile.tileHeight + 1);
+
+        for (int y = yStart; y < yEnd; y++){
+            for (int x = xStart; x < xEnd; x++){
+                getTile(x, y).render(g, (int) (x * Tile.tileWidth - handler.getGameCamera().getXOffset()), (int ) (y * Tile.tileHeight - handler.getGameCamera().getYOffset()));
             }
         }
     }
 
     public Tile getTile(int x, int y){
+        if(x < 0 ||y < 0 ||x >= width ||y>= height){
+            return Tile.grass;
+        }
+
         Tile t = Tile.tiles[tiles[x][y]];
         if (t == null){
             return Tile.dirt;

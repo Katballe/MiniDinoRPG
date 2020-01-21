@@ -2,12 +2,12 @@ package game.states;
 
 import java.awt.Graphics;
 
-import game.Game;
+import game.Handler;
 
 public class MainMenuState extends State {
 
-    public MainMenuState(Game game){
-        super(game);
+    public MainMenuState(Handler handler){
+        super(handler);
 
     }
 

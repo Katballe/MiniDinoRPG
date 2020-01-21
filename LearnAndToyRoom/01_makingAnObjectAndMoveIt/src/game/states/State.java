@@ -2,7 +2,7 @@ package game.states;
 
 import java.awt.Graphics;
 
-import game.Game;
+import game.Handler;
 
 public abstract class State {       // read up on abstract classes 
     
@@ -17,10 +17,10 @@ public abstract class State {       // read up on abstract classes
         return currentState;
     }
 
-    protected Game game;
+    protected Handler handler;
 
-    public State (Game game){
-        this.game = game;
+    public State (Handler handler){
+        this.handler = handler;
     }
 
 
