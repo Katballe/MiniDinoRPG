@@ -6,17 +6,16 @@ import game.Game;
 import game.dispaly.Assets;
 
 public class Player extends Creature {
-    private Game game;
 
     public Player(Game game, float x, float y) {
-        super(x, y, Creature.defaultCreatureWidth, Creature.defaultCreatureHeight);
-        this.game = game;
+        super(game, x, y, Creature.defaultCreatureWidth, Creature.defaultCreatureHeight);
     }
 
     @Override
     public void update() {
         getInput();
         move();
+        game.getGameCamera().centerOnEntity(this);
 
         // temp
         /*
@@ -56,12 +55,12 @@ public class Player extends Creature {
 
     @Override
     public void render(Graphics g) {
-        if (xMove == 0 && yMove == 0){
-            g.drawImage(Assets.playerIdle1, (int) x, (int) y, width, height, null);
+        /*if (xMove == 0 && yMove == 0){
+            g.drawImage(Assets.playerIdle1, (int) (x-game.getGameCamera().getXOffset()), (int) (y-game.getGameCamera().getYOffset()), width, height, null);
         } else {
-            g.drawImage(Assets.playerRun1, (int) x, (int) y, width, height, null);
-        }
-        
+            g.drawImage(Assets.playerRun1, (int) (x-game.getGameCamera().getXOffset()), (int) (y-game.getGameCamera().getYOffset()), width, height, null);
+        }*/
+        g.drawImage(Assets.playerRun1, (int) (x-game.getGameCamera().getXOffset()), (int) (y-game.getGameCamera().getYOffset()), width, height, null);
     }
 
     

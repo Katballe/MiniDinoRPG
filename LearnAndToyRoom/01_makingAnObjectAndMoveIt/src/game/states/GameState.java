@@ -4,7 +4,6 @@ import java.awt.Graphics;
 
 import game.Game;
 import game.entities.creatures.Player;
-import game.tile.Tile;
 import game.world.World;
 
 public class GameState extends State {
@@ -14,14 +13,18 @@ public class GameState extends State {
 
     public GameState(Game game){
         super(game);
-        player = new Player(game, 100, 200);
-        world = new World("");
+        player = new Player(game, 100, 100);
+        world = new World(game, "LearnAndToyRoom\\01_makingAnObjectAndMoveIt\\src\\game\\rcs\\worlds\\world1.txt");
+
+    //    game.getGameCamera().move(0, 0);
     }
 
     @Override
     public void update() {
         world.update();
         player.update();
+
+     //   game.getGameCamera().move(1, 1);
     }
 
     @Override

@@ -2,6 +2,7 @@ package game;
 
 import game.dispaly.Assets;
 import game.dispaly.Display;
+import game.dispaly.GameCamera;
 import game.dispaly.imageLoader;
 import game.dispaly.spriteSheet;
 import game.input.KeyManager;
@@ -16,9 +17,9 @@ import java.awt.image.BufferedImage;
 
 
 public class Game implements Runnable {
-    
+
     private Display display;
-    public int width, height;
+    private int width, height;
     public String title;
     
     private boolean running = false;
@@ -34,6 +35,9 @@ public class Game implements Runnable {
 
     //Input
     private KeyManager keyManager;
+
+    // camera
+    private GameCamera gameCamera;
 
     //temp code
     //private int counter;
@@ -56,6 +60,8 @@ public class Game implements Runnable {
         display = new Display(title, width, height);
         display.getFrame().addKeyListener(keyManager);
         Assets.init();
+
+        gameCamera = new GameCamera(this, 0, 0);
         //testImage = imageLoader.loadImage("/game/rcs/textures/spritesheet.png");
         //sheet = new spriteSheet(testImage);
 
@@ -174,6 +180,15 @@ public class Game implements Runnable {
     
     public KeyManager getKeyManager(){
         return keyManager;
+    }
+    public GameCamera getGameCamera(){
+        return gameCamera;
+    }
+    public int getWidth(){
+        return width;
+    }
+    public int getHeight(){
+        return height;
     }
     
     //   læs op på synchronized

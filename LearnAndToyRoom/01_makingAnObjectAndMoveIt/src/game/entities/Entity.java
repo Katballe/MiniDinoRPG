@@ -2,13 +2,17 @@ package game.entities;
 
 import java.awt.Graphics;
 
+import game.Game;
+
 public abstract class Entity {
 
+    protected Game game;
     protected float x,y;    //float for smooth movement
     protected int width, height;    // of the creature
     
     
-    public Entity(float x, float y, int witdh, int height){
+    public Entity(Game game, float x, float y, int witdh, int height){
+        this.game = game;
         this.x = x;
         this.y = y;
         this.width = witdh;

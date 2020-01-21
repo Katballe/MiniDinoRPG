@@ -1,20 +1,21 @@
 package game.entities.creatures;
 
 import game.entities.Entity;
+import game.Game;
 
 public abstract class Creature extends Entity {
 
     public static final int defaultHealth = 10;
-    public static final float defaultSpeed = 3.0f;
-    public static final int defaultCreatureWidth  = 80, 
-                            defaultCreatureHeight = 80;
+    public static final float defaultSpeed = 2.3f;
+    public static final int defaultCreatureWidth  = 60, 
+                            defaultCreatureHeight = 60;
 
     protected int health;
     protected float speed;
     protected float xMove, yMove;
 
-    public Creature(float x, float y, int width, int height) {
-        super(x, y, width, height);
+    public Creature(Game game, float x, float y, int width, int height) {
+        super(game, x, y, width, height);
         health = defaultHealth;
         speed = defaultSpeed;
         xMove = 0;
