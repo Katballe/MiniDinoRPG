@@ -4,70 +4,78 @@ import game.dispaly.Assets;
 import game.dispaly.Display;
 import game.dispaly.GameCamera;
 import game.input.KeyManager;
+import game.input.MouseManager;
 import game.states.GameState;
 import game.states.MainMenuState;
 import game.states.State;
 
 import java.awt.image.BufferStrategy;
+import java.io.IOException;
 import java.awt.Graphics;
-
-
 
 public class Game implements Runnable {
 
     private Display display;
     private int width, height;
     public String title;
-    
+
     private boolean running = false;
-    private Thread thread;      // threds, learn about it! kinda a miniprogram. kører seperat fra "hoved kode"
-    
-    private BufferStrategy bs;      // read about it
+    private Thread thread; // threds, learn about it! kinda a miniprogram. kører seperat fra "hoved kode"
+
+    private BufferStrategy bs; // read about it
     private Graphics g;
-    
 
-    //states 
-    private State gameState;
-    private State menuState;
+    // states
+    public State gameState;
+    public State menuState;
 
-    //Input
+    // Input
     private KeyManager keyManager;
+    private MouseManager mouseManager;
 
     // camera
     private GameCamera gameCamera;
 
-    //handler
+    // handler
     private Handler handler;
 
-    //temp code
-    //private int counter;
-    //private BufferedImage testImage;
-    //private spriteSheet sheet;
-    //temp code end 
-    
+    // temp code
+    // private int counter;
+    // private BufferedImage testImage;
+    // private spriteSheet sheet;
+    // temp code end
 
-
-
-    public Game(String title, int width, int height){
-        this.title=title;
-        this.width=width;
-        this.height=height;
+    public Game(String title, int width, int height) {
+        this.title = title;
+        this.width = width;
+        this.height = height;
         keyManager = new KeyManager();
+        mouseManager = new MouseManager();
     }
-    
-    private void init(){
+
+    private void init() {
         display = new Display(title, width, height);
         display.getFrame().addKeyListener(keyManager);
-        Assets.init();
+        display.getFrame().addMouseListener(mouseManager);
+        display.getFrame().addMouseMotionListener(mouseManager);
+        display.getCanvas().addMouseListener(mouseManager);
+        display.getCanvas().addMouseMotionListener(mouseManager);
+        try {
+            Assets.init();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-        gameCamera = new GameCamera(this, 0, 0);
         handler = new Handler(this);
+        gameCamera = new GameCamera(handler, 0, 0);
+        
         //testImage = imageLoader.loadImage("/game/rcs/textures/spritesheet.png");
         //sheet = new spriteSheet(testImage);
 
         gameState = new GameState(handler);
         menuState = new MainMenuState(handler);
-        State.setState(gameState);
+        //  State.setState(gameState);
+        State.setState(menuState);  //TEMP
     }
 
     /*
@@ -180,6 +188,9 @@ public class Game implements Runnable {
     
     public KeyManager getKeyManager(){
         return keyManager;
+    }
+    public MouseManager getMouseManager(){
+        return mouseManager;
     }
     public GameCamera getGameCamera(){
         return gameCamera;

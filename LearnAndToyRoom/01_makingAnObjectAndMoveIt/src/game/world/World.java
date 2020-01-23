@@ -3,6 +3,9 @@ package game.world;
 import java.awt.Graphics;
 
 import game.Handler;
+import game.entities.EntityManager;
+import game.entities.creatures.Player;
+import game.entities.statics.Tree;
 import game.tile.Tile;
 import game.utils.Utils;
 
@@ -13,13 +16,31 @@ public class World {
     private int spawnX, spawnY;
     private int [][] tiles;
 
+    //entity
+    private EntityManager entityManager;
+
     public World(Handler handler, String path){
         this.handler = handler;
+        entityManager = new EntityManager(handler, new Player(handler, 100, 100));
+
+        entityManager.addEntity(new Tree(handler, 1000, 1000));
+        entityManager.addEntity(new Tree(handler, 900, 900));
+        entityManager.addEntity(new Tree(handler, 800, 800));
+        entityManager.addEntity(new Tree(handler, 700, 700));
+
         loadWorld(path);
+
+        entityManager.getPlayer().setX(spawnX);
+        entityManager.getPlayer().setY(spawnY);
+
     }
 
     public void update(){
+        entityManager.update();
+    }
 
+    public EntityManager getEntityManager(){
+        return entityManager;
     }
 
     public void render(Graphics g){
@@ -33,6 +54,8 @@ public class World {
                 getTile(x, y).render(g, (int) (x * Tile.tileWidth - handler.getGameCamera().getXOffset()), (int ) (y * Tile.tileHeight - handler.getGameCamera().getYOffset()));
             }
         }
+
+        entityManager.render(g);
     }
 
     public Tile getTile(int x, int y){
@@ -77,5 +100,11 @@ public class World {
         */
     }
     
+    public int getWidth(){
+        return width;
+    }
+    public int getHeight(){
+        return height;
+    }
 
 }

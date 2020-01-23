@@ -7,7 +7,7 @@ import game.Handler;
 public abstract class Creature extends Entity {
 
     public static final int defaultHealth = 10;
-    public static final float defaultSpeed = 2.3f;
+    public static final float defaultSpeed = 3.0f;
     public static final int defaultCreatureWidth  = 80, 
                             defaultCreatureHeight = 80;
 
@@ -24,8 +24,13 @@ public abstract class Creature extends Entity {
     }
 
     public void move() {
-        moveX();
-        moveY();
+        if(!checkEntityCollision(xMove , 0f)){
+            moveX();
+        }
+        if(!checkEntityCollision(0f , yMove)){
+            moveY();
+        }
+        
         
     }
 
