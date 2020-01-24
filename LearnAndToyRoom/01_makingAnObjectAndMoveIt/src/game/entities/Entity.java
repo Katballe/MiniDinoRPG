@@ -7,6 +7,11 @@ import game.Handler;
 
 public abstract class Entity {
 
+    protected int health;
+    public static final int defaultHealth = 10;
+
+    protected boolean active = true;
+
     protected Handler handler;
     protected float x,y;    //float for smooth movement
     protected int width, height;    // of the creature
@@ -19,6 +24,7 @@ public abstract class Entity {
         this.y = y;
         this.width = witdh;
         this.height = height;
+        health = defaultHealth;
 
         bounds = new Rectangle(0, 0, width, height);
     }
@@ -37,6 +43,29 @@ public abstract class Entity {
             } 
         }
         return false;
+    }
+
+    public abstract void die();
+
+    public void hurt(int damageTaken){
+        health -= damageTaken;
+        if(health <= 0){
+            active = false;
+            die();
+        }
+    }
+
+    public int getHealth(){
+        return health;
+    }
+    public void setHealth(int health){
+        this.health = health;
+    }
+    public boolean getActive(){
+        return active;
+    }
+    public void setActive(boolean active){
+        this.active = active;
     }
 
     public float getX(){

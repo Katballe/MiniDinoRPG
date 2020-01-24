@@ -3,15 +3,20 @@ package game.entities.creatures;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+import java.awt.Rectangle;
 
 import game.Handler;
 import game.dispaly.Animation;
 import game.dispaly.Assets;
+import game.entities.Entity;
 
 public class Player extends Creature {
 
     //animation
     private Animation animWalk, animWalkLeft, animIdle, animIdleLeft;
+    // attack timer
+    private long lastAttack, attackCooldown = 800, attackTimer = attackCooldown;
+
 
     public Player(Handler handler, float x, float y) {
         super(handler, x, y, Creature.defaultCreatureWidth, Creature.defaultCreatureHeight);
@@ -35,25 +40,62 @@ public class Player extends Creature {
         animIdle.update();
         animWalkLeft.update();
         animIdleLeft.update();
+        
+        //movement
         getInput();
         move();
         handler.getGameCamera().centerOnEntity(this);
 
-        // temp
-        /*
-        if (game.getKeyManager().up){
-            y -= 3;
+        //attack
+        checkAttacks();
+
+    }
+
+    private void checkAttacks(){
+        attackTimer += System.currentTimeMillis() - lastAttack;
+        lastAttack = System.currentTimeMillis();
+        if (attackTimer < attackCooldown) {
+            return;
         }
-        if (game.getKeyManager().down){
-            y += 3;
+
+        Rectangle cb = getCollisionBounds(0, 0);
+        Rectangle ar = new Rectangle();
+        int arSize = 30;
+        ar.width = arSize;
+        ar.height = arSize;
+
+        if(handler.getKeyManager().aUp){
+            ar.x = cb.x + cb.width / 2 - arSize / 2;
+            ar.y = cb.y - arSize;
+        } else if(handler.getKeyManager().aDown){
+            ar.x = cb.x + cb.width / 2 - arSize / 2;
+            ar.y = cb.y + cb.height;
+        } else if(handler.getKeyManager().aLeft){
+            ar.x = cb.x  - arSize;
+            ar.y = cb.y + cb.height / 2 - arSize / 2;
+        }else if(handler.getKeyManager().aRight){
+            ar.x = cb.x  + cb.width;
+            ar.y = cb.y + cb.height / 2 - arSize / 2;
+        } else {
+            return;
         }
-        if (game.getKeyManager().left){
-            x -= 3;
+        
+        attackTimer = 0;
+
+        for(Entity e : handler.getWorld().getEntityManager().getEntities()){
+            if(e.equals(this)) {
+                continue;
+            }
+            if(e.getCollisionBounds(0, 0).intersects(ar)){
+                e.hurt(1);
+                return;
+            }
         }
-        if (game.getKeyManager().right){
-            x += 3;
-        } 
-        */
+    }
+
+    @Override
+    public void die(){
+        System.out.println("YOU LOOSE!");
     }
 
     private void getInput(){

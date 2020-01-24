@@ -7,12 +7,19 @@ public class KeyManager implements KeyListener {
 
     private boolean[] keys;
     public boolean up, down, left, right;
+    public boolean aUp, aDown, aLeft, aRight;
 
     public KeyManager(){
         keys = new boolean[256];
     }
 
     public void update(){
+        aUp = keys[KeyEvent.VK_UP];
+        aDown = keys[KeyEvent.VK_DOWN];
+        aRight = keys[KeyEvent.VK_RIGHT];
+        aLeft = keys[KeyEvent.VK_LEFT];
+
+
         up = keys[KeyEvent.VK_W];
         down = keys[KeyEvent.VK_S];
         left = keys[KeyEvent.VK_A];

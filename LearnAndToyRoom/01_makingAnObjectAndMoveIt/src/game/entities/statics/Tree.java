@@ -25,9 +25,15 @@ public class Tree extends StaticEntity {
 
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
 		
-	}
+		
+    }
+    
+    @Override
+    public void die() {
+        
+        
+    }
 
 	@Override
 	public void render(Graphics g) {
