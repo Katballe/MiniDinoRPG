@@ -13,8 +13,8 @@ import java.awt.image.BufferStrategy;
 import java.io.IOException;
 import java.awt.Graphics;
 
-public class Game implements Runnable {
-
+public class Game implements Runnable {     // MAIN CLASS OF THE GAME
+                                            //  implements Runnable is for threads
     private Display display;
     private int width, height;
     public String title;
@@ -39,11 +39,6 @@ public class Game implements Runnable {
     // handler
     private Handler handler;
 
-    // temp code
-    // private int counter;
-    // private BufferedImage testImage;
-    // private spriteSheet sheet;
-    // temp code end
 
     public Game(String title, int width, int height) {
         this.title = title;

@@ -21,7 +21,7 @@ public class World {
 
     public World(Handler handler, String path){
         this.handler = handler;
-        entityManager = new EntityManager(handler, new Player(handler, 100, 100));
+        entityManager = new EntityManager(handler, new Player(handler, 10, 10));
 
         entityManager.addEntity(new Tree(handler, 150, 150));
         entityManager.addEntity(new Tree(handler, 1000, 1000));

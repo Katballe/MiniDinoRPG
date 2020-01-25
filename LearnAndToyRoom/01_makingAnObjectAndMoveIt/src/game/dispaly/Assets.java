@@ -13,7 +13,7 @@ public class Assets {
     private final static int widthTiles = 62, heightTiles = 62;
 
     public static BufferedImage stoneTile, grassTile, dirtTile, treeOne, startButton;
-    public static BufferedImage[] playerWalk, playerIdle, playerWalkLeft, playerIdleLeft;
+    public static BufferedImage[] playerWalk, playerIdle, playerWalkLeft, playerIdleLeft, playerBasicAttack;
 
     public static void init() throws IOException {
         // spriteSheet sheet = new spriteSheet(imageLoader.loadImage("/game/rcs/textures/idlePlayer.png"));
@@ -28,8 +28,21 @@ public class Assets {
         spriteSheet idleSprite = new spriteSheet(imageLoader.loadImage("/game/rcs/textures/idlePlayer.png"));
         spriteSheet idleSpriteLeft = new spriteSheet(imageLoader.loadImage("/game/rcs/textures/idlePlayerLeft.png"));
 
+        // attack 
+        spriteSheet playerBasicAttackSheet = new spriteSheet(imageLoader.loadImage("/game/rcs/attack/attackAnimatinSprite.png"));
+        //spriteSheet playerBasicAttackSheet = new spriteSheet(imageLoader.loadImage("LearnAndToyRoom\\01_makingAnObjectAndMoveIt\\src\\game\\rcs\\attack\\attackAnimatinSprite.png"));
+
         
         startButton = ImageIO.read(new File("LearnAndToyRoom\\01_makingAnObjectAndMoveIt\\src\\game\\rcs\\menu\\startButton.png"));
+
+        playerBasicAttack = new BufferedImage[7];
+        playerBasicAttack[0] = playerBasicAttackSheet.crop(8, 8, 19, 18);
+        playerBasicAttack[1] = playerBasicAttackSheet.crop(48, 8, 19, 18);
+        playerBasicAttack[2] = playerBasicAttackSheet.crop(88, 8, 19, 18);
+        playerBasicAttack[3] = playerBasicAttackSheet.crop(128, 8, 19, 18);
+        playerBasicAttack[4] = playerBasicAttackSheet.crop(168, 8, 19, 18);
+        playerBasicAttack[5] = playerBasicAttackSheet.crop(208, 8, 19, 18);
+        playerBasicAttack[6] = playerBasicAttackSheet.crop(248, 8, 19, 18);
 
         playerWalk = new BufferedImage[10];
         playerWalk[0] = walkSprite.crop(0, 0, widthPlayerWalk, heightPlayerWalk);

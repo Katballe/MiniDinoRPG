@@ -3,8 +3,6 @@ package game.states;
 import java.awt.Graphics;
 
 import game.Handler;
-import game.entities.creatures.Player;
-import game.entities.statics.Tree;
 import game.world.World;
 
 public class GameState extends State {
