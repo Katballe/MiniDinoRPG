@@ -3,6 +3,7 @@ package game.entities.statics;
 import java.awt.Graphics;
 import game.Handler;
 import game.dispaly.Assets;
+import game.items.Item;
 
 public class Tree extends StaticEntity {
 
@@ -31,7 +32,7 @@ public class Tree extends StaticEntity {
     
     @Override
     public void die() {
-        
+        handler.getWorld().getItemManager().additem(Item.woodItem.createNew((int) x, (int) y));
         
     }
 

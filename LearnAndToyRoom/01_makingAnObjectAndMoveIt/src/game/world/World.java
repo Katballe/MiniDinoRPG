@@ -6,6 +6,7 @@ import game.Handler;
 import game.entities.EntityManager;
 import game.entities.creatures.Player;
 import game.entities.statics.Tree;
+import game.items.ItemManager;
 import game.tile.Tile;
 import game.utils.Utils;
 
@@ -18,16 +19,30 @@ public class World {
 
     //entity
     private EntityManager entityManager;
+    //item 
+    private ItemManager itemManager;
 
     public World(Handler handler, String path){
         this.handler = handler;
-        entityManager = new EntityManager(handler, new Player(handler, 10, 10));
 
-        entityManager.addEntity(new Tree(handler, 150, 150));
-        entityManager.addEntity(new Tree(handler, 1000, 1000));
-        entityManager.addEntity(new Tree(handler, 900, 900));
-        entityManager.addEntity(new Tree(handler, 800, 800));
-        entityManager.addEntity(new Tree(handler, 700, 700));
+        entityManager = new EntityManager(handler, new Player(handler, 10, 10));
+        itemManager = new ItemManager(handler);
+
+        entityManager.addEntity(new Tree(handler, 640, 640));
+        entityManager.addEntity(new Tree(handler, 760, 640));
+        entityManager.addEntity(new Tree(handler, 880, 640));
+        entityManager.addEntity(new Tree(handler, 1000, 640));
+        entityManager.addEntity(new Tree(handler, 1120, 640));
+        entityManager.addEntity(new Tree(handler, 520, 320));
+        entityManager.addEntity(new Tree(handler, 520, 440));
+
+        entityManager.addEntity(new Tree(handler, 640, 760));
+        entityManager.addEntity(new Tree(handler, 760, 760));
+        entityManager.addEntity(new Tree(handler, 880, 760));
+        entityManager.addEntity(new Tree(handler, 1000, 760));
+        entityManager.addEntity(new Tree(handler, 1120, 760));
+        entityManager.addEntity(new Tree(handler, 640, 320));
+        entityManager.addEntity(new Tree(handler, 640, 440));
 
         loadWorld(path);
 
@@ -38,6 +53,7 @@ public class World {
 
     public void update(){
         entityManager.update();
+        itemManager.update();
     }
 
     public EntityManager getEntityManager(){
@@ -55,7 +71,9 @@ public class World {
                 getTile(x, y).render(g, (int) (x * Tile.tileWidth - handler.getGameCamera().getXOffset()), (int ) (y * Tile.tileHeight - handler.getGameCamera().getYOffset()));
             }
         }
-
+        // item render
+        itemManager.render(g);
+        // entity render
         entityManager.render(g);
     }
 
@@ -99,6 +117,23 @@ public class World {
             }
         }
         */
+    }
+
+
+
+    public ItemManager getItemManager(){
+        return itemManager;
+    }
+    public void setItemManager(ItemManager itemManager){
+        this.itemManager = itemManager;
+    }
+
+    public Handler getHandler(){
+        return handler;
+    }
+
+    public void setHandler(Handler handler){
+        this.handler = handler;
     }
     
     public int getWidth(){

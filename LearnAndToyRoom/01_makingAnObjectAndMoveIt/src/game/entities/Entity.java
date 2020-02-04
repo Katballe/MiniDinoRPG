@@ -8,7 +8,7 @@ import game.Handler;
 public abstract class Entity {
 
     protected int health;
-    public static final int defaultHealth = 10;
+    public static final int defaultHealth = 3;
 
     protected boolean active = true;
 

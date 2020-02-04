@@ -8,6 +8,7 @@ import game.Handler;
 import game.dispaly.Animation;
 import game.dispaly.Assets;
 import game.entities.Entity;
+import game.inventory.Inventory;
 
 public class Player extends Creature {
     
@@ -16,6 +17,9 @@ public class Player extends Creature {
     // attack timer
     private long lastAttack, attackCooldown = 400, attackTimer = attackCooldown;
     private boolean attackRight = false;
+
+    // inventory
+    private Inventory inventory;
     
     public Player(Handler handler, float x, float y) {
         super(handler, x, y, Creature.defaultCreatureWidth, Creature.defaultCreatureHeight);
@@ -25,6 +29,8 @@ public class Player extends Creature {
         bounds.width = 25; //25
         bounds.height = 40; //40
         
+        inventory = new Inventory(handler);
+
         //animation setup
         animWalk = new Animation(125, Assets.playerWalk);
         animIdle = new Animation(125, Assets.playerIdle);
@@ -48,6 +54,9 @@ public class Player extends Creature {
         
         //attack
         checkAttacks();
+
+        //  inventory
+        inventory.update();
         
     }
     
@@ -136,6 +145,8 @@ public class Player extends Creature {
         g.fillRect((int) (x + bounds.x - handler.getGameCamera().getXOffset()), (int) (y + bounds.y - handler.getGameCamera().getYOffset()), 
         bounds.width, bounds.height);
         */
+
+        inventory.render(g);
     }
     
     private BufferedImage playAttackAnim(){
@@ -170,6 +181,13 @@ public class Player extends Creature {
         }
         // return animWalk.getCurrentFrame();
         
+    }
+
+    public Inventory getInventory(){
+        return inventory;
+    }
+    public void setInventory(Inventory inventory){
+        this.inventory = inventory;
     }
     
 }

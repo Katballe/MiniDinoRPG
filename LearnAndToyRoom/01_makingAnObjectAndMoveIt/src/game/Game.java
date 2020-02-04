@@ -48,7 +48,7 @@ public class Game implements Runnable {     // MAIN CLASS OF THE GAME
         mouseManager = new MouseManager();
     }
 
-    private void init() {
+    private void init() {       // init, duh 
         display = new Display(title, width, height);
         display.getFrame().addKeyListener(keyManager);
         display.getFrame().addMouseListener(mouseManager);
@@ -73,35 +73,17 @@ public class Game implements Runnable {     // MAIN CLASS OF THE GAME
         State.setState(menuState);  //TEMP
     }
 
-    /*
-    int x = 0;
-    int y = 0;
-    int xSpeed = 1;
-    int ySpeed = 1;
-    */
-    private void update(){
+
+    private void update(){  // update variables
         keyManager.update();
 
         if (State.getState() != null){
             State.getState().update();
         }
-        /*
-        if (x+166 == width){
-            xSpeed = -1;
-        } else if (xSpeed == -1 && x==0){
-            xSpeed = 1;
-        }
-        if (y+160 == height){
-            ySpeed = -1;
-        } else if (ySpeed == -1 && y==0){
-            ySpeed = 1;
-        }
-        x+=xSpeed;
-        y+=ySpeed;
-        */
+
     }
     
-    private void render(){
+    private void render(){  // render images
         
         bs = display.getCanvas().getBufferStrategy();
         if (bs == null){
@@ -110,26 +92,12 @@ public class Game implements Runnable {     // MAIN CLASS OF THE GAME
         }
         
         g = bs.getDrawGraphics();   // creates "the paint brush" for graphics 
-        
+            // it is the graphics object that does ALL rendering
+            
         // clean the screen
         g.clearRect(0, 0, width, height);
         
         // draw here
-        /*
-        if (counter == 1) {
-            g.drawImage(Assets.playerRun1, x, 10, null);
-        } else if (counter ==2) {
-            g.drawImage(Assets.playerRun2, x, 10, null);
-        } else if (counter ==3) {
-            g.drawImage(Assets.playerRun3, x, 10, null);
-        } else if (counter ==4) {
-            g.drawImage(Assets.playerRun4, x, 10, null);
-        } else {
-            counter = 0;
-        }
-        counter ++;
-        */
-        //g.drawImage(Assets.playerRun1, x, y, null); // image observer - temp
         
         if (State.getState() != null){
             State.getState().render(g);
@@ -144,7 +112,7 @@ public class Game implements Runnable {     // MAIN CLASS OF THE GAME
     }
     
     
-    public void run(){
+    public void run(){  // must have in "implements Runnable". this is a thread whic always loops
         
         init();
         
@@ -178,7 +146,7 @@ public class Game implements Runnable {     // MAIN CLASS OF THE GAME
         }
         }
         
-        stop();
+        stop(); // calls the sync method stop
     }
     
     public KeyManager getKeyManager(){
@@ -197,21 +165,21 @@ public class Game implements Runnable {     // MAIN CLASS OF THE GAME
         return height;
     }
     
-    //   læs op på synchronized
-    public synchronized void start(){
-        if (running)
-        return;
+    //   læs op på synchronized -   sync syncroniserer stop og start når vi skal gå fra den ene til den anden så der ikke kommer problemet
+    public synchronized void start(){   // Thread start 
+        if (running)    // a safty
+            return;
         running = true;
         thread = new Thread(this);
         thread.start(); // kalder run metoden
     }
     
-    public synchronized void stop(){
-        if (!running)
-        return;
+    public synchronized void stop(){    //  thread stop
+        if (!running)   // a safty
+            return;
         running = false;
         try {
-            thread.join();
+            thread.join();      // proper way to close a thread 
         } catch (Exception e) {
             
         }

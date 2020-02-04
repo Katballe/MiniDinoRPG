@@ -2,6 +2,7 @@ package game.entities;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Iterator;
 import java.awt.Graphics;
 import game.Handler;
 import game.entities.creatures.Player;
@@ -32,13 +33,24 @@ public class EntityManager {
     }
     
     public void update(){
+        Iterator<Entity> it = entities.iterator();
+        while(it.hasNext()){            // this way entities will never be skipped. If several entities are removed at the same update, some might be skipped if previous version 
+                                        // op remove loop is used 
+            Entity e = it.next();
+            e.update();
+            if(!e.active){
+                it.remove();
+            }
+
+        }
+        /*          this might skip entities
         for(int i = 0; i < entities.size(); i++){
             Entity e = entities.get(i);
             e.update();
             if(!e.getActive()){
                 entities.remove(e);
             }
-        }
+        */
         entities.sort(renderSorter);
     }
     

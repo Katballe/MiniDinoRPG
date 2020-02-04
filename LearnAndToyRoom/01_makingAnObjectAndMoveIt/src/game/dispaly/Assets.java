@@ -12,7 +12,7 @@ public class Assets {
     private final static int widthPlayerIdle = 4096 / 10, heightPlayerIdle = 284;
     private final static int widthTiles = 62, heightTiles = 62;
 
-    public static BufferedImage stoneTile, grassTile, dirtTile, treeOne, startButton;
+    public static BufferedImage stoneTile, grassTile, dirtTile, treeOne, startButton, log;
     public static BufferedImage[] playerWalk, playerIdle, playerWalkLeft, playerIdleLeft, playerBasicAttack;
 
     public static void init() throws IOException {
@@ -34,6 +34,7 @@ public class Assets {
 
         
         startButton = ImageIO.read(new File("LearnAndToyRoom\\01_makingAnObjectAndMoveIt\\src\\game\\rcs\\menu\\startButton.png"));
+        log = ImageIO.read(new File("LearnAndToyRoom\\01_makingAnObjectAndMoveIt\\src\\game\\rcs\\textures\\log.png"));
 
         playerBasicAttack = new BufferedImage[7];
         playerBasicAttack[0] = playerBasicAttackSheet.crop(8, 8, 19, 18);
