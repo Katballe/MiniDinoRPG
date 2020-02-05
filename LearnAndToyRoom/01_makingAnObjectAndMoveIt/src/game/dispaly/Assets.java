@@ -2,7 +2,7 @@ package game.dispaly;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-
+import java.awt.Font;
 import javax.imageio.ImageIO;
 
 public class Assets {
@@ -12,10 +12,16 @@ public class Assets {
     private final static int widthPlayerIdle = 4096 / 10, heightPlayerIdle = 284;
     private final static int widthTiles = 62, heightTiles = 62;
 
+    public static Font font28, font48;
+
     public static BufferedImage stoneTile, grassTile, dirtTile, treeOne, startButton, log;
     public static BufferedImage[] playerWalk, playerIdle, playerWalkLeft, playerIdleLeft, playerBasicAttack;
+    public static BufferedImage inventoryScreen;
 
     public static void init() throws IOException {
+        // font
+        font28 = FontLoader.loadFond("LearnAndToyRoom\\01_makingAnObjectAndMoveIt\\src\\game\\rcs\\fonts\\slkscr.ttf", 28);
+        font48 = FontLoader.loadFond("LearnAndToyRoom\\01_makingAnObjectAndMoveIt\\src\\game\\rcs\\fonts\\slkscr.ttf", 48);
         // spriteSheet sheet = new spriteSheet(imageLoader.loadImage("/game/rcs/textures/idlePlayer.png"));
         
         // texture
@@ -28,6 +34,7 @@ public class Assets {
         spriteSheet idleSprite = new spriteSheet(imageLoader.loadImage("/game/rcs/textures/idlePlayer.png"));
         spriteSheet idleSpriteLeft = new spriteSheet(imageLoader.loadImage("/game/rcs/textures/idlePlayerLeft.png"));
 
+
         // attack 
         spriteSheet playerBasicAttackSheet = new spriteSheet(imageLoader.loadImage("/game/rcs/attack/attackAnimatinSprite.png"));
         //spriteSheet playerBasicAttackSheet = new spriteSheet(imageLoader.loadImage("LearnAndToyRoom\\01_makingAnObjectAndMoveIt\\src\\game\\rcs\\attack\\attackAnimatinSprite.png"));
@@ -35,6 +42,7 @@ public class Assets {
         
         startButton = ImageIO.read(new File("LearnAndToyRoom\\01_makingAnObjectAndMoveIt\\src\\game\\rcs\\menu\\startButton.png"));
         log = ImageIO.read(new File("LearnAndToyRoom\\01_makingAnObjectAndMoveIt\\src\\game\\rcs\\textures\\log.png"));
+        inventoryScreen = ImageIO.read(new File("LearnAndToyRoom\\01_makingAnObjectAndMoveIt\\src\\game\\rcs\\menu\\inventoryScreen.png"));
 
         playerBasicAttack = new BufferedImage[7];
         playerBasicAttack[0] = playerBasicAttackSheet.crop(8, 8, 19, 18);
