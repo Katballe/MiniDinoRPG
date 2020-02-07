@@ -14,9 +14,9 @@ public class Assets {
 
     public static Font font28, font48;
 
-    public static BufferedImage stoneTile, grassTile, dirtTile, treeOne, startButton, log;
+    public static BufferedImage stoneTile, grassTile, dirtTile, treeOne, startButton, log, rock;
     public static BufferedImage[] playerWalk, playerIdle, playerWalkLeft, playerIdleLeft, playerBasicAttack;
-    public static BufferedImage inventoryScreen;
+    public static BufferedImage inventoryScreen, stone, wildGrass, wildGrass2, ModelOne;
 
     public static void init() throws IOException {
         // font
@@ -40,9 +40,14 @@ public class Assets {
         //spriteSheet playerBasicAttackSheet = new spriteSheet(imageLoader.loadImage("LearnAndToyRoom\\01_makingAnObjectAndMoveIt\\src\\game\\rcs\\attack\\attackAnimatinSprite.png"));
 
         
-        startButton = ImageIO.read(new File("LearnAndToyRoom\\01_makingAnObjectAndMoveIt\\src\\game\\rcs\\menu\\startButton.png"));
-        log = ImageIO.read(new File("LearnAndToyRoom\\01_makingAnObjectAndMoveIt\\src\\game\\rcs\\textures\\log.png"));
-        inventoryScreen = ImageIO.read(new File("LearnAndToyRoom\\01_makingAnObjectAndMoveIt\\src\\game\\rcs\\menu\\inventoryScreen.png"));
+        startButton = ImageIO.read(new File("LearnAndToyRoom\\01_makingAnObjectAndMoveIt\\src\\game\\rcs\\menu\\startButton.png"));             // start button
+        log = ImageIO.read(new File("LearnAndToyRoom\\01_makingAnObjectAndMoveIt\\src\\game\\rcs\\textures\\log.png"));                         // log
+        rock = ImageIO.read(new File("LearnAndToyRoom\\01_makingAnObjectAndMoveIt\\src\\game\\rcs\\textures\\rock.png"));                       // rock
+        inventoryScreen = ImageIO.read(new File("LearnAndToyRoom\\01_makingAnObjectAndMoveIt\\src\\game\\rcs\\menu\\inventoryScreen.png"));     // inventory screen
+        stone = ImageIO.read(new File("LearnAndToyRoom\\01_makingAnObjectAndMoveIt\\src\\game\\rcs\\textures\\stone.png"));                     // stone
+        wildGrass = ImageIO.read(new File("LearnAndToyRoom\\01_makingAnObjectAndMoveIt\\src\\game\\rcs\\textures\\wildGrassTile.png"));         // wild grass
+        wildGrass2 = ImageIO.read(new File("LearnAndToyRoom\\01_makingAnObjectAndMoveIt\\src\\game\\rcs\\textures\\wildGrassTile2.png"));       // wild grass w. flowers
+        ModelOne = ImageIO.read(new File("LearnAndToyRoom\\01_makingAnObjectAndMoveIt\\src\\game\\rcs\\textures\\ModelOne.png"));       // player model one 
 
         playerBasicAttack = new BufferedImage[7];
         playerBasicAttack[0] = playerBasicAttackSheet.crop(8, 8, 19, 18);

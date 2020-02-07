@@ -11,6 +11,7 @@ public class Item {
 
     public static Item[] items = new Item[256];
     public static Item woodItem = new Item(Assets.log, "Wood", 0);
+    public static Item stoneItem = new Item(Assets.stone, "Rock", 1);
 
     // class
 
@@ -29,11 +30,16 @@ public class Item {
         this.texture = texture; 
         this.name = name;
         this.id = id;
-        count = 1;
+        count = (int) randomNumber(1, 3);
 
         items[id] = this;
 
         bounds = new Rectangle (x, y, itemWidth, itemHeight);
+    }
+
+    public static double randomNumber(double min, double max){
+        double x = (Math.random()*((max-min)+1))+min;
+        return x;
     }
     
     public void update(){

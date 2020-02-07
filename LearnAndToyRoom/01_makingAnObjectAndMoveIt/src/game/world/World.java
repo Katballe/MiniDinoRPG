@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import game.Handler;
 import game.entities.EntityManager;
 import game.entities.creatures.Player;
+import game.entities.statics.Rock;
 import game.entities.statics.Tree;
 import game.items.ItemManager;
 import game.tile.Tile;
@@ -28,7 +29,10 @@ public class World {
         entityManager = new EntityManager(handler, new Player(handler, 10, 10));
         itemManager = new ItemManager(handler);
 
-        entityManager.addEntity(new Tree(handler, 640, 640));
+
+        entityManager.addEntity(new Rock(handler, 640, 640));
+
+        //entityManager.addEntity(new Tree(handler, 640, 640));
         entityManager.addEntity(new Tree(handler, 760, 640));
         entityManager.addEntity(new Tree(handler, 880, 640));
         entityManager.addEntity(new Tree(handler, 1000, 640));
@@ -79,12 +83,13 @@ public class World {
 
     public Tile getTile(int x, int y){
         if(x < 0 ||y < 0 ||x >= width ||y>= height){
-            return Tile.grass;
-        }
+            return Tile.wildGrass;  
+        }   // outsie the screen, never really relevant, but just to be sure 
 
-        Tile t = Tile.tiles[tiles[x][y]];
+        Tile t = Tile.tiles[tiles[x][y]];   // this is the important one
+
         if (t == null){
-            return Tile.dirt;
+            return Tile.dirt;   // to be safe
         }
         return t;
     }
