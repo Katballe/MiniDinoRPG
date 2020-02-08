@@ -7,6 +7,7 @@ import game.dispaly.Assets;
 import game.ui.ClickListener;
 import game.ui.UIImageButton;
 import game.ui.UIManager;
+import java.awt.event.KeyEvent;
 
 public class MainMenuState extends State {
 
@@ -30,6 +31,12 @@ public class MainMenuState extends State {
 	@Override
     public void update() {
         uiManager.update();
+
+        if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_ENTER)){
+            State.setState(handler.getGame().gameState);
+        }
+
+
         /*System.out.print(handler.getMouseManager().getMouseX() + " ");
         System.out.println(handler.getMouseManager().getMouseY());
         if(handler.getMouseManager().isLeftPressed() && handler.getMouseManager().isRightPressed()){
