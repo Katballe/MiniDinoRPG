@@ -21,7 +21,7 @@ public class Inventory {
     private int invX = 64, invY = 48, invWidth = 512, invHeight = 384;
     private int invListCenterX = invX + 171, invListCenterY = invY + invHeight/2 + 5;
     private int invListSpacing = 30, invCountX = 484, invCountY = 172;
-    private int selectedItem = 0, craftChoiceOne = 0, craftChoiceTwo = 0;
+    private int selectedItem = 0, craftChoiceOne, craftChoiceTwo, craftCounter;
     //    private boolean selected = false;
     
     private int invImageX = 452, invImageY = 82,
@@ -59,32 +59,72 @@ public class Inventory {
             selectedItem = 0;
         }
         
-
-        // **************************************************
+        
+        // ***************  CRAFTING  ***********************************
+        
         if (handler.getKeyManager().keyJustPressed(KeyEvent.VK_G)){
-            if (craftChoiceOne == 0) {
+            if (craftCounter == 0) {
                 craftChoiceOne = selectedItem;
-                
-            } else if(craftChoiceTwo == 0){
+                craftCounter++;
+                System.out.println(craftChoiceOne + " CHO - SI " + selectedItem);
+            } else if (craftCounter == 1) {
                 craftChoiceTwo = selectedItem;
+                craftCounter++;
+                System.out.println(craftChoiceTwo + " CHO - SI " + selectedItem);
             }
         }
         
-        if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_Y)){
-            try {
-                if (inventoryItems.get(craftChoiceOne).getId() == 1 && inventoryItems.get(craftChoiceTwo).getId() == 0) {
-			
-                    System.out.println("Something have been crafted!");   
-                    craftChoiceOne = 0;
-                    craftChoiceTwo = 0;     
+        if (handler.getKeyManager().keyJustPressed(KeyEvent.VK_Y)) { // craft
+            System.out.println("here");
+            int id1, id2, count1, count2;
+            id1 = inventoryItems.get(craftChoiceOne).getId();
+            count1 = inventoryItems.get(craftChoiceOne).getCount();
+            System.out.println("here");
+            id2 = inventoryItems.get(craftChoiceTwo).getId();
+            count2 = inventoryItems.get(craftChoiceTwo).getCount();
+            System.out.println("here");
+            if ((id1 == 0 || id2 == 0) && (id1 == 1 || id2 == 1)) {
+                if (count1 != 0 && count2 != 0) {
+                    System.out.println(inventoryItems.get(craftChoiceOne).getCount());
+                    System.out.println(inventoryItems.get(craftChoiceTwo).getCount());
+                    addItem(Item.rockOnStickItem, 1);
+                    addItem(Item.stoneItem, -1);
+                    addItem(Item.woodItem, -1);
+                    System.out.println(inventoryItems.get(craftChoiceOne).getCount());
+                    System.out.println(inventoryItems.get(craftChoiceTwo).getCount());
+                    
+                    boolean r1 = false, r2 = false;
+                    
+                    if (inventoryItems.get(craftChoiceOne).getCount() == 0) {
+                        r1 = true;
+                    }
+                    
+                    if (inventoryItems.get(craftChoiceTwo).getCount() == 0) {
+                        r2 = true;
+                    }
+                    
+                    if(r1 == true && r2 == true) {   
+                        inventoryItems.remove(craftChoiceOne);
+                        inventoryItems.remove(craftChoiceTwo);
+                    } else if (r1 == true){
+                        inventoryItems.remove(craftChoiceOne);
+                    } else if(r2 == true){
+                        inventoryItems.remove(craftChoiceTwo);
+                    }
+                    
                 }
-            } catch (Exception e) {
-                System.out.println("Nope");
+                craftChoiceOne = 0;
+                craftChoiceTwo = 0;
+                craftCounter = 0;
+                selectedItem = 0;
             }
-            
-           
         }
-        //****************************************************  
+        
+        if (handler.getKeyManager().keyJustPressed(KeyEvent.VK_N)){ // counter --
+            craftCounter = 0;
+            
+        }
+        
         
         /*
         System.out.println("Inventory is open");
@@ -115,6 +155,7 @@ public class Inventory {
             
             if (i == 0) {
                 Text.drawString(g, "> " + inventoryItems.get(selectedItem + i).getName() + " <", invListCenterX, invListCenterY + i* invListSpacing, true, Color.YELLOW, Assets.font28);
+                //System.out.println(inventoryItems.get(selectedItem).getName());
             } else {                                
                 Text.drawString(g, inventoryItems.get(selectedItem + i).getName(), invListCenterX, invListCenterY + i* invListSpacing, true, Color.WHITE, Assets.font28);
             }
@@ -139,6 +180,19 @@ public class Inventory {
         }
         inventoryItems.add(item);
     }
+    
+    public void addItem(Item item, int count){
+        for(Item i : inventoryItems){
+            if (i.getId() == item.getId()) {
+                i.setCount(i.getCount() + count);
+                return;
+            }
+        }
+        inventoryItems.add(item);
+        
+        
+    }
+    
     
     // getters and setters
     

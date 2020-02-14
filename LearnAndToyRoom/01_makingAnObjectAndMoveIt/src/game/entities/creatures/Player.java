@@ -183,9 +183,9 @@ public class Player extends Creature {
             return animWalk.getCurrentFrame();
         } else {
             
-            return Assets.ModelOne; // temp with new model
+            // return Assets.ModelOne; // temp with new model
             
-/*
+
             if (prevDir == 1){
                 return animIdle.getCurrentFrame();
             } else if (prevDir == 2){
@@ -193,7 +193,7 @@ public class Player extends Creature {
             } else {
                 return animIdle.getCurrentFrame();
             }
-*/
+
             
         }
         // return animWalk.getCurrentFrame();

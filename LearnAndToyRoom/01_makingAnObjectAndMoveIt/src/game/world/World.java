@@ -31,8 +31,9 @@ public class World {
 
 
         entityManager.addEntity(new Rock(handler, 640, 640));
+        entityManager.addEntity(new Rock(handler, 540, 640));
+        entityManager.addEntity(new Rock(handler, 540, 540));
 
-        //entityManager.addEntity(new Tree(handler, 640, 640));
         entityManager.addEntity(new Tree(handler, 760, 640));
         entityManager.addEntity(new Tree(handler, 880, 640));
         entityManager.addEntity(new Tree(handler, 1000, 640));

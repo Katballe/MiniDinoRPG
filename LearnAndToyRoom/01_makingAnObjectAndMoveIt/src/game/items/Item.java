@@ -12,6 +12,7 @@ public class Item {
     public static Item[] items = new Item[256];
     public static Item woodItem = new Item(Assets.log, "Wood", 0);
     public static Item stoneItem = new Item(Assets.stone, "Rock", 1);
+    public static Item rockOnStickItem = new Item(Assets.rockOnStick, "Rock on a stick", 10);
 
     // class
 
