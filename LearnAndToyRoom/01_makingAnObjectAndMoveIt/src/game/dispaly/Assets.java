@@ -16,7 +16,8 @@ public class Assets {
 
     public static BufferedImage stoneTile, grassTile, dirtTile, treeOne, startButton, log, rock;
     public static BufferedImage[] playerWalk, playerIdle, playerWalkLeft, playerIdleLeft, playerBasicAttack;
-    public static BufferedImage inventoryScreen, stone, wildGrass, wildGrass2, ModelOne, rockOnStick;
+    public static BufferedImage inventoryScreen, stone, wildGrass, wildGrass2, ModelOne, rockOnStick,
+            goldRock, goldStone, pureGold;
 
     public static void init() throws IOException {
         // font
@@ -47,10 +48,11 @@ public class Assets {
         stone = ImageIO.read(new File("LearnAndToyRoom\\01_makingAnObjectAndMoveIt\\src\\game\\rcs\\textures\\stone.png"));                     // stone
         wildGrass = ImageIO.read(new File("LearnAndToyRoom\\01_makingAnObjectAndMoveIt\\src\\game\\rcs\\textures\\wildGrassTile.png"));         // wild grass
         wildGrass2 = ImageIO.read(new File("LearnAndToyRoom\\01_makingAnObjectAndMoveIt\\src\\game\\rcs\\textures\\wildGrassTile2.png"));       // wild grass w. flowers
-        ModelOne = ImageIO.read(new File("LearnAndToyRoom\\01_makingAnObjectAndMoveIt\\src\\game\\rcs\\textures\\ModelOne.png"));       // player model one 
-        rockOnStick = ImageIO.read(new File("LearnAndToyRoom\\01_makingAnObjectAndMoveIt\\src\\game\\rcs\\items\\RockOnStick.png"));
-        
-
+        ModelOne = ImageIO.read(new File("LearnAndToyRoom\\01_makingAnObjectAndMoveIt\\src\\game\\rcs\\textures\\ModelOne.png"));               // player model one 
+        rockOnStick = ImageIO.read(new File("LearnAndToyRoom\\01_makingAnObjectAndMoveIt\\src\\game\\rcs\\items\\RockOnStick.png"));            // rock on a stick item
+        goldRock = ImageIO.read(new File("LearnAndToyRoom\\01_makingAnObjectAndMoveIt\\src\\game\\rcs\\textures\\goldRock.png")); 
+        goldStone = ImageIO.read(new File("LearnAndToyRoom\\01_makingAnObjectAndMoveIt\\src\\game\\rcs\\textures\\goldStone.png"));
+        pureGold = ImageIO.read(new File("LearnAndToyRoom\\01_makingAnObjectAndMoveIt\\src\\game\\rcs\\items\\pureGold.png"));
 
         playerBasicAttack = new BufferedImage[7];
         playerBasicAttack[0] = playerBasicAttackSheet.crop(8, 8, 19, 18);

@@ -10,9 +10,11 @@ public class Item {
     // handler 
 
     public static Item[] items = new Item[256];
-    public static Item woodItem = new Item(Assets.log, "Wood", 0);
-    public static Item stoneItem = new Item(Assets.stone, "Rock", 1);
-    public static Item rockOnStickItem = new Item(Assets.rockOnStick, "Rock on a stick", 10);
+    public static Item woodItem = new Item("Wood", Assets.log, 0);
+    public static Item stoneItem = new Item("Rock", Assets.stone, 1);
+    public static Item goldItem = new Item("Rock with gold", Assets.goldStone, 2);
+    public static Item pureGold = new Item("Pure gold", Assets.pureGold, 3);
+    public static Item rockOnStickItem = new Item("Rock on a stick", Assets.rockOnStick,  10);
 
     // class
 
@@ -26,8 +28,9 @@ public class Item {
 
     protected int x, y, count;
     protected boolean pickedUp;
+    //private boolean randomDrop = false;
     
-    public Item(BufferedImage texture, String name, int id){
+    public Item(String name, BufferedImage texture,  int id){
         this.texture = texture; 
         this.name = name;
         this.id = id;
@@ -61,13 +64,13 @@ public class Item {
     }
 
     public Item createNew(int x, int y){
-        Item i = new Item(texture, name, id);
+        Item i = new Item(name, texture, id);
         i.setPosition(x, y);
         return i;
     }
 
     public Item createNew(int count){   // for test and debug  
-        Item i = new Item(texture, name, id);
+        Item i = new Item(name, texture, id);
         i.setPickedUp(true);    // straight to inventory
         i.setCount(count);
         return i;

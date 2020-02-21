@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import game.Handler;
 import game.entities.EntityManager;
 import game.entities.creatures.Player;
+import game.entities.statics.GoldRock;
 import game.entities.statics.Rock;
 import game.entities.statics.Tree;
 import game.items.ItemManager;
@@ -31,7 +32,7 @@ public class World {
 
 
         entityManager.addEntity(new Rock(handler, 640, 640));
-        entityManager.addEntity(new Rock(handler, 540, 640));
+        entityManager.addEntity(new GoldRock(handler, 540, 640));
         entityManager.addEntity(new Rock(handler, 540, 540));
 
         entityManager.addEntity(new Tree(handler, 760, 640));
