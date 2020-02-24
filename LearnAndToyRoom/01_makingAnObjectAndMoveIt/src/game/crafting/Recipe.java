@@ -22,10 +22,10 @@ public class Recipe {
 
     private static Recipe[] recipeList = new Recipe[256];
     public static Recipe rockOnStoneRecipe = new Recipe(Item.rockOnStickItem, 1, 1, 0, 1, 0);
-    public static Recipe pureGold = new Recipe(Item.goldItem, 3, 1, 3, 1, 1);
+    public static Recipe pureGold = new Recipe(Item.pureGold, 2, 1, 2, 1, 1);
 
-    public Recipe(Item item, int componentOneId, int componentOneCount, int componentTwoId, int componentTwoCount,
-            int recipeId) {
+    public Recipe(Item item, int componentOneId, int componentOneCount, int componentTwoId, 
+            int componentTwoCount, int recipeId) {
         this.componentOneId = componentOneId;
         this.componentTwoId = componentTwoId;
         this.componentOneCount = componentOneCount;

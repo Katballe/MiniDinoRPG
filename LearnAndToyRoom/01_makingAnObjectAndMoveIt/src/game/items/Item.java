@@ -14,6 +14,7 @@ public class Item {
     public static Item stoneItem = new Item("Rock", Assets.stone, 1);
     public static Item goldItem = new Item("Rock with gold", Assets.goldStone, 2);
     public static Item pureGold = new Item("Pure gold", Assets.pureGold, 3);
+
     public static Item rockOnStickItem = new Item("Rock on a stick", Assets.rockOnStick,  10);
 
     // class
@@ -34,7 +35,8 @@ public class Item {
         this.texture = texture; 
         this.name = name;
         this.id = id;
-        count = (int) randomNumber(1, 3);
+        //count = (int) randomNumber(1, 3);
+        count = 1;
 
         items[id] = this;
 
@@ -148,5 +150,6 @@ public class Item {
     public void setPickedUp(boolean pickedUp){
         this.pickedUp = pickedUp;
     }
+    
 
 }
