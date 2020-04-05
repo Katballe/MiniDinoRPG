@@ -11,7 +11,7 @@ public class GameState extends State {
 
     public GameState(Handler handler){
         super(handler);
-        world = new World(handler, "src\\game\\rcs\\worlds\\world1.txt");
+        world = new World(handler, "MiniDinoRPG\\src\\game\\rcs\\worlds\\world1.txt");
         handler.setWorld(world);
     }
 

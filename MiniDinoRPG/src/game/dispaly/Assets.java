@@ -28,8 +28,8 @@ public class Assets {
 
     public static void init() throws IOException {
         // font
-        font28 = FontLoader.loadFond("src\\game\\rcs\\fonts\\slkscr.ttf", 28);
-        font48 = FontLoader.loadFond("src\\game\\rcs\\fonts\\slkscr.ttf", 48);
+        font28 = FontLoader.loadFond("MiniDinoRPG\\src\\game\\rcs\\fonts\\slkscr.ttf", 28);
+        font48 = FontLoader.loadFond("MiniDinoRPG\\src\\game\\rcs\\fonts\\slkscr.ttf", 48);
         // spriteSheet sheet = new spriteSheet(imageLoader.loadImage("/game/rcs/textures/idlePlayer.png"));
         
         // texture
@@ -48,18 +48,18 @@ public class Assets {
         //spriteSheet playerBasicAttackSheet = new spriteSheet(imageLoader.loadImage("src\\game\\rcs\\attack\\attackAnimatinSprite.png"));
 
         
-        startButton = ImageIO.read(new File("src\\game\\rcs\\menu\\startButton.png"));             // start button
-        log = ImageIO.read(new File("src\\game\\rcs\\textures\\log.png"));                         // log
-        rock = ImageIO.read(new File("src\\game\\rcs\\textures\\rock.png"));                       // rock
-        inventoryScreen = ImageIO.read(new File("src\\game\\rcs\\menu\\inventoryScreen.png"));     // inventory screen
-        stone = ImageIO.read(new File("src\\game\\rcs\\textures\\stone.png"));                     // stone
-        wildGrass = ImageIO.read(new File("src\\game\\rcs\\textures\\wildGrassTile.png"));         // wild grass
-        wildGrass2 = ImageIO.read(new File("src\\game\\rcs\\textures\\wildGrassTile2.png"));       // wild grass w. flowers
-        ModelOne = ImageIO.read(new File("src\\game\\rcs\\textures\\ModelOne.png"));               // player model one 
-        rockOnStick = ImageIO.read(new File("src\\game\\rcs\\items\\RockOnStick.png"));            // rock on a stick item
-        goldRock = ImageIO.read(new File("src\\game\\rcs\\textures\\goldRock.png")); 
-        goldStone = ImageIO.read(new File("src\\game\\rcs\\textures\\goldStone.png"));
-        pureGold = ImageIO.read(new File("src\\game\\rcs\\items\\pureGold.png"));
+        startButton = ImageIO.read(new File("MiniDinoRPG\\src\\game\\rcs\\menu\\startButton.png"));             // start button
+        log = ImageIO.read(new File("MiniDinoRPG\\src\\game\\rcs\\textures\\log.png"));                         // log
+        rock = ImageIO.read(new File("MiniDinoRPG\\src\\game\\rcs\\textures\\rock.png"));                       // rock
+        inventoryScreen = ImageIO.read(new File("MiniDinoRPG\\src\\game\\rcs\\menu\\inventoryScreen.png"));     // inventory screen
+        stone = ImageIO.read(new File("MiniDinoRPG\\src\\game\\rcs\\textures\\stone.png"));                     // stone
+        wildGrass = ImageIO.read(new File("MiniDinoRPG\\src\\game\\rcs\\textures\\wildGrassTile.png"));         // wild grass
+        wildGrass2 = ImageIO.read(new File("MiniDinoRPG\\src\\game\\rcs\\textures\\wildGrassTile2.png"));       // wild grass w. flowers
+        ModelOne = ImageIO.read(new File("MiniDinoRPG\\src\\game\\rcs\\textures\\ModelOne.png"));               // player model one 
+        rockOnStick = ImageIO.read(new File("MiniDinoRPG\\src\\game\\rcs\\items\\RockOnStick.png"));            // rock on a stick item
+        goldRock = ImageIO.read(new File("MiniDinoRPG\\src\\game\\rcs\\textures\\goldRock.png")); 
+        goldStone = ImageIO.read(new File("MiniDinoRPG\\src\\game\\rcs\\textures\\goldStone.png"));
+        pureGold = ImageIO.read(new File("MiniDinoRPG\\src\\game\\rcs\\items\\pureGold.png"));
 
         playerBasicAttack = new BufferedImage[7];
         playerBasicAttack[0] = playerBasicAttackSheet.crop(8, 8, 19, 18);
